@@ -1,0 +1,43 @@
+# Language LON (list of numbers)
+
+# Lexical specification
+skip WHITESPACE '\s+'
+NUM '\d+'
+LPAREN '\('
+RPAREN '\)'
+ATSIGN '\@'
+%
+# Grammar
+<lon> ::=  <nums> ATSIGN
+<nums>:NumsNode ::= LPAREN <nums>one RPAREN <nums>two
+<nums>:NumsNull  ::= 
+%
+
+Lon
+%%%
+
+    // toString semantics for a Lon object
+    public String toString() {
+		return "( " + nums.toString() + ")";
+	}
+%%%
+
+NumsNode
+%%%
+	
+	// toString semantics for a NumsNode object
+	public String toString() {
+		return " " + one.toString() + two.toString();
+	}
+
+%%%
+
+NumsNull
+%%%
+	
+	// toString semantics for a NumsNull object
+	public String toString() {
+		return null;
+	}
+
+%%%	
